@@ -1,3 +1,4 @@
+import 'package:counter_app/bloc/counter_bloc.dart';
 import 'package:counter_app/inc_dec_page.dart';
 import 'package:flutter/material.dart';
 import 'package:counter_app/cubit/counter_cubit.dart';
@@ -17,7 +18,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final counterCubit = BlocProvider.of<CounterCubit>(context);
+    // final counterBloc = BlocProvider.of<CounterBloc>(context);
+    // you will need this if you specify bloc: in BlocBuilder
+    // Otherwise blocBuilder will go up the widget tree to find the blocProvider
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -28,8 +31,8 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             const Text('You have pushed the button this many times:'),
-            BlocBuilder<CounterCubit, int>(
-                bloc: counterCubit,
+            BlocBuilder<CounterBloc, int>(
+                // bloc: counterBloc,
                 builder: (context, counter) {
                   return Text(
                     '$counter',
@@ -41,7 +44,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         // onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (context) => const IncDecPage())),
-        onPressed: () {Navigator.of(context).push(MaterialPageRoute(builder: (contex) => IncDecPage()));} ,
+        onPressed: () {Navigator.of(context).push(MaterialPageRoute(builder: (context) => const IncDecPage()));} ,
         tooltip: 'Increment',
         child: const Icon(Icons.navigate_next)
       ),
