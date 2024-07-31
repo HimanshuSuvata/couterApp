@@ -16,5 +16,12 @@ class CounterBloc extends Bloc<CounterEvent, int> {
     on<CounterReset>((event, emit) {
       emit(0);
     });
+
+    on<CounterMultiply>(_onCounterSquare);
   }
+
+  void _onCounterSquare (event, emit) {
+    emit(state);
+  }
+
 }

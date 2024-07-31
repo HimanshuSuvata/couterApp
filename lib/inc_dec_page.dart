@@ -14,25 +14,40 @@ class IncDecPage extends StatelessWidget {
           backgroundColor: Theme.of(context).colorScheme.inversePrimary,
           title: const Text(""),
         ),
-        floatingActionButton:  Column(
-          mainAxisAlignment: MainAxisAlignment.end,
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             FloatingActionButton(
+              heroTag: "btn1",
                 onPressed: () => counterBloc.add(CounterIncremented()),
                 tooltip: 'Increment',
                 child: const Icon(Icons.add)
             ),
             const SizedBox(height: 10,),
             FloatingActionButton(
+              heroTag: "btn2",
                 onPressed: () => counterBloc.add(CounterDecremented()),
                 tooltip: 'Increment',
                 child: const Icon(Icons.minimize)
             ),
             const SizedBox(height: 10,),
             FloatingActionButton(
+              heroTag: "btn3",
                 onPressed: () => counterBloc.add(CounterReset()),
                 tooltip: 'Increment',
                 child: const Icon(Icons.restart_alt_outlined)
+            ),
+            const SizedBox(height: 10,),
+            FloatingActionButton(
+              heroTag: "btn4",
+                onPressed: () => counterBloc.add(CounterMultiply(multiplyBy: 2)),
+                tooltip: 'Increment',
+                child: const Padding(
+                  padding: EdgeInsets.only(top: 8),
+                  child: Center(child: Text("*", style: TextStyle(fontSize: 18),)),
+                )
             ),
           ],
         )
